@@ -122,7 +122,7 @@ public class ServiceReceiver extends Receiver {
                 Log.d(TAG, "Calling powerManager.shutdown()");
                 IPowerManager powerManager = IPowerManager.Stub.asInterface(ServiceManager.getService(Context.POWER_SERVICE));
                 try {
-                    powerManager.shutdown(false, false);
+                    powerManager.shutdown(false, "Container Manager requested Shutdown", false);
                 }
                 catch (RemoteException e) {
                     Log.d(TAG, "Container shutdown failed: " + e.getMessage());
