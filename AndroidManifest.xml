@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This file is part of trust|me
+  Copyright(c) 2013 - 2017 Fraunhofer AISEC
+  Fraunhofer-Gesellschaft zur Förderung der angewandten Forschung e.V.
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms and conditions of the GNU General Public License,
+  version 2 (GPL 2), as published by the Free Software Foundation.
+
+  This program is distributed in the hope it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GPL 2 license for more details.
+
+  You should have received a copy of the GNU General Public License along with
+  this program; if not, see <http://www.gnu.org/licenses/>
+
+  The full GNU General Public License is included in this distribution in
+  the file called "COPYING".
+
+  Contact Information:
+  Fraunhofer AISEC <trustme@aisec.fraunhofer.de>
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.fraunhofer.aisec.trustme.service"
+	android:installLocation="internalOnly">
+
+	<!-- Required by applications to send critical intents to the trustme service
+		 (see TrustmeActionReceiver.java) -->
+	<permission
+		android:name="de.fraunhofer.aisec.trustme.service.permission.SEND_INTENTS"
+		android:label="@string/permission_send_intents_label"
+		android:description="@string/permission_send_intents_description"
+		android:protectionLevel="signatureOrSystem" />
+
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.DEVICE_POWER"/>
+	<uses-permission android:name="android.permission.REBOOT"/>
+	<uses-permission android:name="android.permission.SHUTDOWN"/>
+	<uses-permission android:name="android.permission.MASTER_CLEAR"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<!-- <uses-permission android:name="android.permission.SET_WALLPAPER"/> -->
+	<!-- <uses-permission android:name="android.permission.BIND_WALLPAPER"/> -->
+	<uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
+	<uses-permission android:name="android.permission.ACCESS_NOTIFICATIONS" />
+	<uses-permission android:name="android.permission.CANCEL_NOTIFICATIONS" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+	<!--The following permissions are required for switching WiFi on and off...-->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.UPDATE_DEVICE_STATS" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+	<!-- The following permissions are required to write global settings, e.g. airplanemode -->
+	<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+	<!-- The following permission is required to send trustme-specific intents to TrustmeActionReceiver -->
+	<uses-permission android:name="de.fraunhofer.aisec.trustme.service.permission.SEND_INTENTS" />
+
+	<application android:persistent="true">
+		<receiver android:name=".TrustmeBroadcastReceiver"
+			android:exported="true" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+			<intent-filter>  
+				<action android:name="android.intent.action.BOOT_COMPLETED" />  
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>  
+		</receiver>
+		<service android:name=".TrustmeService"
+			android:exported="true">
+		</service>
+		<service android:name=".notification.NotificationListener"
+			android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+			<intent-filter>
+				<action android:name="android.service.notification.NotificationListenerService" />
+			</intent-filter>
+		</service>
+		<!-- The following is required in order to correctly handle a long home button press in a1 -->
+		<activity android:name="AssistFakeActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.ASSIST"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+
+        <activity android:name="PopupActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.Transparent">
+        </activity>
+	</application>
+</manifest>

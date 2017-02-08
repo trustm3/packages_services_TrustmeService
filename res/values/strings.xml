@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2013-2015 with regard to distribution / exploitation:
+  Fraunhofer-Gesellschaft zur Förderung der angewandten Forschung e.V.
+  and Bundesdruckerei GmbH, Germany
+
+  Authors: Wolfgang Grandegger, Constanze Hausner, Manuel Huber,
+           Oliver Melnyk, Michael Velten, Michael Weiß, Sascha Wessel
+-->
+
+<resources>
+
+    <string name="app_name">TrustmeService</string>
+    <string name="action_settings">Settings</string>
+    <string name="permission_send_intents_label">send trustme intents</string>
+    <string name="permission_send_intents_description">Allows the application
+        to send critical intents to the trustme service</string>
+
+</resources>

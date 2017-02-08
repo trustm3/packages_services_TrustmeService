@@ -1,0 +1,18 @@
+<!--
+  Copyright (C) 2013-2015 with regard to distribution / exploitation:
+  Fraunhofer-Gesellschaft zur Förderung der angewandten Forschung e.V.
+  and Bundesdruckerei GmbH, Germany
+
+  Authors: Wolfgang Grandegger, Constanze Hausner, Manuel Huber,
+           Oliver Melnyk, Michael Velten, Michael Weiß, Sascha Wessel
+-->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+
+</menu>
