@@ -109,7 +109,7 @@ public class ServiceReceiver extends Receiver {
                 wallpaperHandler.sendWallpaper();
                 */
                 Log.d(TAG, "Calling pm.goToSleep()");
-                powerManager.goToSleep(SystemClock.uptimeMillis());
+                powerManager.goToSleep(SystemClock.uptimeMillis(), PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, PowerManager.GO_TO_SLEEP_FLAG_NO_DOZE);
                 break;
 
             case CmldToServiceMessage.RESUME:
