@@ -21,6 +21,8 @@
  * Fraunhofer AISEC <trustme@aisec.fraunhofer.de>
  */
 
+package de.fraunhofer.aisec.trustme.service;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
