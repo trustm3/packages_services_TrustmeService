@@ -24,6 +24,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.fraunhofer.aisec.trustme.service"
+	android:sharedUserId="android.uid.system"
 	android:installLocation="internalOnly">
 
 	<!-- Required by applications to send critical intents to the trustme service

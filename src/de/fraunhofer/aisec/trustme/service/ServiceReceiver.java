@@ -40,6 +40,7 @@ import android.graphics.Color;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.util.Log;
 import android.content.Context;
 import android.content.Intent;
@@ -108,11 +109,15 @@ public class ServiceReceiver extends Receiver {
                 Log.d(TAG, "Triggering the sending of current wallpaper to cmld (if necessary)");
                 wallpaperHandler.sendWallpaper();
                 */
+                Log.d(TAG, "Stopping camera service");
+                SystemProperties.set("ctl.stop", "qcamerasvr");
                 Log.d(TAG, "Calling pm.goToSleep()");
                 powerManager.goToSleep(SystemClock.uptimeMillis(), PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, PowerManager.GO_TO_SLEEP_FLAG_NO_DOZE);
                 break;
 
             case CmldToServiceMessage.RESUME:
+                Log.d(TAG, "Starting camera service");
+                SystemProperties.set("ctl.start", "qcamerasvr");
                 Log.d(TAG, "Calling pm.wakeUp()");
                 powerManager.wakeUp(SystemClock.uptimeMillis());
                 // Note: we currently do not send a RESUME_COMPLETED
