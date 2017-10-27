@@ -83,12 +83,14 @@
 			</intent-filter>
 		</service>
 		<!-- The following is required in order to correctly handle a long home button press in a1 -->
+		<!--
 		<activity android:name="AssistFakeActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.ASSIST"/>
 				<category android:name="android.intent.category.DEFAULT"/>
 			</intent-filter>
 		</activity>
+		-->
 
         <activity android:name="PopupActivity"
             android:excludeFromRecents="true"
